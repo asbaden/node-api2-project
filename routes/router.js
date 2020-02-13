@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 	Posts.findById(req.params.id)
 		.then(posts => {
+			console.log(posts);
 			if (posts.length !== 0) {
 				res.status(200).json(posts);
 			} else {
@@ -180,7 +181,10 @@ router.delete("/:id", (req, res) => {
 
 				Posts.remove(result[0].id)
 					.then(result2 => {
-						res.status(200).json({ message: "ok" });
+						res.status(200).json({ message: "ok",
+						result
+					
+					});
 					})
 					.catch(err => {
 						res.status(500).json({
